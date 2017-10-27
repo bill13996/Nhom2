@@ -30,6 +30,7 @@ public class KiemTraJ2 {
                 "  3. Exit.\n" +
                 "**************************************\n"
             );
+            System.out.println("DIT ME GIT HAY VCL LUON!");
             while(true){
                 try {
                     System.out.print("Nhap: ");
