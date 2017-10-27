@@ -32,7 +32,7 @@ public class KiemTraJ2 {
             );
             System.out.println("DIT ME GIT HAY VCL LUON!");
             
-            // thanh dien 
+            // thanh dien dcm TA dep trai vl!
 
             System.out.println("Fuck afsocmk asdfakfsd");
 
