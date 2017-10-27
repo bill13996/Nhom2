@@ -33,6 +33,9 @@ public class KiemTraJ2 {
             System.out.println("DIT ME GIT HAY VCL LUON!");
             
             //hehehehehehehehe
+
+            System.out.println("Fuck afsocmk asdfakfsd");
+
             while(true){
                 try {
                     System.out.print("Nhap: ");

@@ -28,6 +28,10 @@ public class Laptop {
         return "Laptop - Code:"+code+" \tManufacture:"+manufacture+" \tDescription"+description;
     }
     
+    private void method() {
+        //asdasdasd
+    }
+
     //getters setters
     public String getCode() {
         return code;
