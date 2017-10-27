@@ -31,6 +31,8 @@ public class KiemTraJ2 {
                 "**************************************\n"
             );
             System.out.println("DIT ME GIT HAY VCL LUON!");
+            
+            //hehehehehehehehe
             while(true){
                 try {
                     System.out.print("Nhap: ");
