@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fx:id="PaneAddModel" prefHeight="500.0" prefWidth="550.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <AnchorPane id="AnchorPane" fx:id="ModelAdd" prefHeight="500.0" prefWidth="550.0" styleClass="anchor" stylesheets="@style.css">
+         <children>
+              <Label fx:id="label" minHeight="16" minWidth="69" />
+            <Label fx:id="lblTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" prefHeight="27.0" prefWidth="550.0" text="NEW MODEL">
+               <font>
+                  <Font name="Calibri Light" size="28.0" />
+               </font>
+            </Label>
+            <TextField id="txtName" fx:id="txtName" focusTraversable="false" layoutX="258.0" layoutY="81.0" prefHeight="31.0" prefWidth="246.0" promptText="Name" styleClass="loginfield" />
+            <TextField id="txtBody1" fx:id="txtBody1" focusTraversable="false" layoutX="262.0" layoutY="219.0" prefHeight="31.0" prefWidth="69.0" promptText="Bust" styleClass="loginfield" />
+            <RadioButton id="rdoAvailable" fx:id="rdoAvailable" layoutX="258.0" layoutY="409.0" mnemonicParsing="false" selected="true" styleClass="label" text="Available" />
+            <ComboBox id="cboCity" fx:id="cboCity" layoutX="258.0" layoutY="179.0" prefHeight="27.0" prefWidth="134.0" promptText="City" styleClass="buttonColor" />
+            <Button fx:id="btnAddSkill" layoutX="483.0" layoutY="270.0" mnemonicParsing="false" onAction="#skillAdd" prefHeight="50.0" prefWidth="27.0" text="+">
+               <styleClass>
+                  <String fx:value="loginBtn" />
+                  <String fx:value="buttonColor" />
+               </styleClass>
+            </Button>
+            <TextArea id="txaSkill" fx:id="txaSkill" editable="false" layoutX="258.0" layoutY="270.0" prefHeight="50.0" prefWidth="209.0" promptText="Skill..." styleClass="textArea" />
+            <Button fx:id="btnSave" layoutX="365.0" layoutY="451.0" mnemonicParsing="false" onAction="#saveModel" prefHeight="27.0" prefWidth="69.0" styleClass="loginBtn" text="Save" />
+            <Button fx:id="btnCancle" layoutX="441.0" layoutY="451.0" mnemonicParsing="false" onAction="#cancle" prefHeight="27.0" prefWidth="69.0" styleClass="loginBtn" text="Exit" />
+            <Button fx:id="btnImg" layoutX="93.0" layoutY="341.0" mnemonicParsing="false" onAction="#addImg" styleClass="loginBtn" text="Add Image" />
+            <TextField id="txtBody2" fx:id="txtBody2" focusTraversable="false" layoutX="346.0" layoutY="219.0" prefHeight="31.0" prefWidth="69.0" promptText="Waist" styleClass="loginfield" />
+            <TextField id="txtBody3" fx:id="txtBody3" focusTraversable="false" layoutX="435.0" layoutY="219.0" prefHeight="31.0" prefWidth="69.0" promptText="Hips" styleClass="loginfield" />
+            <Label layoutX="422.0" layoutY="226.0" text="-" />
+            <Label layoutX="334.0" layoutY="226.0" text="-" />
+            <ComboBox fx:id="cboGender" layoutX="399.0" layoutY="133.0" prefHeight="27.0" prefWidth="109.0" promptText="Gender">
+               <styleClass>
+                  <String fx:value="comboBox" />
+                  <String fx:value="buttonColor" />
+               </styleClass>
+            </ComboBox>
+            <TextArea id="txaSkill" fx:id="txaLang" editable="false" layoutX="258.0" layoutY="341.0" prefHeight="50.0" prefWidth="209.0" promptText="Language...." styleClass="textArea" />
+            <Button fx:id="btnAddLanguage" layoutX="483.0" layoutY="341.0" mnemonicParsing="false" onAction="#languageAdd" prefHeight="50.0" prefWidth="27.0" text="+">
+               <styleClass>
+                  <String fx:value="loginBtn" />
+                  <String fx:value="buttonColor" />
+               </styleClass>
+            </Button>
+            <ImageView fx:id="ava" fitHeight="225.0" fitWidth="180.0" layoutX="40.0" layoutY="94.0">
+               <image>
+                  <Image url="@Icon/solid-cloud-gray-fabric_large.jpg" />
+               </image>
+            </ImageView>
+            <DatePicker fx:id="txtDOB" layoutX="258.0" layoutY="133.0" prefHeight="27.0" prefWidth="134.0" promptText="Date Of Birth" styleClass="labelBlack" />
+            <HBox fx:id="btnControl" alignment="CENTER" layoutX="34.0" layoutY="260.0" prefHeight="38.0" prefWidth="180.0" spacing="30.0" visible="false">
+               <children>
+                  <Button fx:id="btnImgPrev" focusTraversable="false" mnemonicParsing="false" onAction="#prevImg" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="loginBtn" text="&lt;&lt;" visible="false">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnImgDel" focusTraversable="false" mnemonicParsing="false" onAction="#deleteImg" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="loginBtn" text="X">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnImgNext" focusTraversable="false" mnemonicParsing="false" onAction="#nextImg" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="loginBtn" text="&gt;&gt;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="SkillAdd" layoutX="60.0" layoutY="50.0" prefHeight="400.0" prefWidth="430.0" styleClass="anchor" stylesheets="@style.css" visible="false">
+         <children>
+            <HBox alignment="CENTER" layoutX="16.0" layoutY="26.0" prefHeight="300.0" prefWidth="399.0">
+               <children>
+                  <ListView fx:id="listView" prefHeight="249.0" prefWidth="140.0" styleClass="selectBox" />
+                  <VBox alignment="CENTER" prefHeight="255.0" prefWidth="94.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnNext" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="30.0" styleClass="buttonColor">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" styleClass="buttonColor">
+                                 <image>
+                                    <Image url="@Icon/icons8-sort_right.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnPrev" mnemonicParsing="false" onAction="#prev" prefHeight="30.0" prefWidth="30.0" styleClass="buttonColor">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" styleClass="buttonColor">
+                                 <image>
+                                    <Image url="@Icon/icons8-sort_left.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnAdd1" mnemonicParsing="false" onAction="#add" prefHeight="30.0" prefWidth="30.0" styleClass="buttonColor">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" styleClass="buttonColor">
+                                 <image>
+                                    <Image url="@Icon/icons8-plus.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefHeight="30.0" prefWidth="30.0" styleClass="buttonColor">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@Icon/icons8-minus_math.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <ListView fx:id="listView1" prefHeight="300.0" prefWidth="140.0" styleClass="selectBox" />
+               </children>
+            </HBox>
+            <Button fx:id="btnSave1" layoutX="287.0" layoutY="347.0" mnemonicParsing="false" onAction="#save" styleClass="loginBtn" text="Choose" />
+            <Button fx:id="btnExit" layoutX="352.0" layoutY="346.0" mnemonicParsing="false" onAction="#Exit" prefHeight="27.0" prefWidth="52.0" styleClass="loginBtn" text="Back" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="SkillCreate" layoutX="122.0" layoutY="175.0" prefHeight="150.0" prefWidth="306.0" styleClass="anchor" stylesheets="@style.css" visible="false">
+         <children>
+            <Button fx:id="btnBack2" layoutX="213.0" layoutY="95.0" mnemonicParsing="false" onAction="#Back" prefHeight="25.0" prefWidth="50.0" styleClass="loginBtn" text="Back" />
+            <Button fx:id="btnOk2" layoutX="154.0" layoutY="95.0" mnemonicParsing="false" onAction="#OK" prefHeight="25.0" prefWidth="50.0" styleClass="loginBtn" text="OK" />
+            <TextField fx:id="txtCreate" layoutX="44.0" layoutY="45.0" prefHeight="27.0" prefWidth="219.0" styleClass="loginfield" />
+         </children>
+      </AnchorPane>
+    </children>
+</fx:root>

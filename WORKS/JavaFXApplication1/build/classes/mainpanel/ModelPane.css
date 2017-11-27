@@ -1,0 +1,38 @@
+#tabThumb{-fx-alignment:center;}
+#tabID, #tabGender, #tabAge, #tabBody, #tabLoca{-fx-alignment:TOP_CENTER;}
+#modelTable{-fx-focus-color: transparent;}
+#searchBar{
+    -fx-background-radius: 15;
+    -fx-background-image: url("icons/Search_50px.png");
+    -fx-background-size: 18;
+    -fx-background-position: 10 center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 0 0 0 32;
+}
+.toolBtn{-fx-background-radius:2;}
+#delModal{
+    -fx-border-color:#2D3447;
+    -fx-border-width: 0 1 1 1;
+}
+.filterBetween{
+    -fx-opacity: 0.3;
+}
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+#modelDetailPanel{
+   -fx-background-color: #2D3447;
+}
+#btnDetailNext, #btnDetailPrev{
+   -fx-background-color: transparent;
+   -fx-opacity: 0.8;
+}
+#btnDetailNext:hover, #btnDetailPrev:hover{
+   -fx-opacity: 1;
+}
+#btnDetailNext:pressed, #btnDetailPrev:pressed{
+   -fx-background-color: #3f4556;
+}

@@ -1,0 +1,35 @@
+.field{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #a0a2ab transparent;
+    -fx-border-width: 1px;
+    -fx-text-fill: white;
+}
+.sideBtn{
+    -fx-background-color: transparent;
+    -fx-background-radius:50%;
+}
+.sideBtn:pressed{
+    -fx-background-color:#ffa800;
+}
+#lblInfo{
+    -fx-text-fill: red;
+}
+#searchBar{
+    -fx-background-radius: 15 0 0 15;
+    -fx-background-image:url("icon/icons8-search.png");
+    -fx-background-size: 18;
+    -fx-background-position: 10 center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 0 0 0 32;
+    -fx-border-color:  #2D3447;
+    -fx-border-width: 0 1 0 0;
+}
+#cboSearch{
+    -fx-background-radius: 0 15 15 0;
+    -fx-border-width: 0;
+}
+#cboSearch, #searchBar{
+    -fx-background-color:white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color:transparent;
+}
