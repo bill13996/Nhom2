@@ -1,0 +1,19 @@
+#btnMenu {-fx-background-color:#ffb626;}
+#btnMenu:hover {-fx-background-color:#ffc451;}
+#btnMenu:pressed {-fx-background-color:#ffa800;}
+.sideBtn{
+   -fx-background-color:transparent;
+   -fx-background-radius:0;
+   -fx-font-size: 10pt;
+}
+.sideBtn:hover{-fx-background-color:#ffbd3a;}
+.sideBtn:pressed{-fx-background-color:#ffa800;}
+#topBar{-fx-background-color:#2D3447;}
+#sideBar{-fx-background-color:#e8e8e8;}
+#sideBarBackground{
+    -fx-background-color:black;
+    -fx-opacity: 0.5;
+}
+#LangBtn{-fx-background-color:white;}
+#exitConfirmPane{-fx-background-color:#2D3447;}
+#btnExitNo, #btnExitYes{-fx-background-color:white;}
