@@ -11,40 +11,49 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 public class ContractController implements Initializable {
     DatabaseConn db = new DatabaseConn();
   
-    @FXML private Button btnAdd, btnEdit, btnDel, btnN, btnY, btnEditModel;
+    @FXML private Button btnAdd, btnEdit, btnDel, btnN, btnY, btnEditModel, btnAddCus;
+        
+    @FXML private TextField searchBar, contractId, contractName, file, contractAddress, customerName;
+
+    @FXML private Label valMess;
     
-    @FXML private TextField searchBar, contractId, customerName, file, contractAddress;
-
     @FXML private DatePicker dateStart, dateEnd, dateSign;
-
+    
+    @FXML private ComboBox<String> choiceCus;
+    
     @FXML private TableView<Contract> tbContract;
     @FXML private TableColumn<Contract, Integer> colID;
     @FXML private TableColumn<Contract, String> colName;
     @FXML private TableColumn<Contract, DatePicker> colStart;
     @FXML private TableColumn<Contract, DatePicker> colEnd;
+    
     @FXML private TableView<Model> tbModel;
     @FXML private TableColumn<Model, Integer> colModID;
     @FXML private TableColumn<Model, String> colModName;
-    @FXML private AnchorPane viewInfo;
+    
     TreeMap map1, map2;
     
-    ObservableList list = FXCollections.observableArrayList();
     public ContractController() {
     }
 
@@ -165,16 +174,53 @@ public class ContractController implements Initializable {
         
     }
 
-  
+    public class Customer{
+        private String name;
+        private int ID;
+        
+        public Customer(int ID, String name){
+            this.name = name;
+            this.ID = ID;
+        }
+
+        /**
+         * @return the name
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * @param name the name to set
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        /**
+         * @return the ID
+         */
+        public int getID() {
+            return ID;
+        }
+
+        /**
+         * @param ID the ID to set
+         */
+        public void setID(int ID) {
+            this.ID = ID;
+        }
+    }
+    
     public class Contract {
         private int ID, cusID;
         private String name, file, addr ;
         private java.sql.Date start, end, sign;
         //private LocalDate date;
         
-        public Contract (int ID, int cusID, String name, java.sql.Date start, java.sql.Date end, java.sql.Date sign, String addr, String file){
-            this.ID = ID;
-            this.cusID = ID;
+        public Contract (int Id, String name, int cusId, String file, String addr, java.sql.Date start, java.sql.Date end, java.sql.Date sign){
+            this.ID = Id;
+            this.cusID = cusId;
             this.name = name;
             this.end = end;
             this.start = start;
@@ -191,10 +237,10 @@ public class ContractController implements Initializable {
         }
 
         /**
-         * @param ID the ID to set
+         * @param Id the ID to set
          */
-        public void setID(int ID) {
-            this.ID = ID;
+        public void setID(int Id) {
+            this.ID = Id;
         }
 
         /**
@@ -296,27 +342,29 @@ public class ContractController implements Initializable {
         }
     }
     
+    String customerID;
     String sql;
     ObservableList listContract = FXCollections.observableArrayList();
     ObservableList listModel = FXCollections.observableArrayList();
+    ObservableList<String>  choiceValue = FXCollections.observableArrayList();
     
     @FXML
-    public void setTableContract(){
-        try {
-            
+    private void setTableContract(){
+        tbContract.getItems().clear();
+        try {            
             sql = "select * from Contract";
             db.rs = db.stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 int Id = db.rs.getInt("ContractID");
-                int cusId = db.rs.getInt("CusID");
                 String name = db.rs.getString("ConName");
+                int cusId = db.rs.getInt("CusID");                
                 String file = db.rs.getString("ConFile");
                 String addr = db.rs.getString("ConAddr");
                 java.sql.Date start = db.rs.getDate("ConStart");
                 java.sql.Date end = db.rs.getDate("ConEnd");
                 java.sql.Date sign = db.rs.getDate("ConSignDate");
-                Contract contract = new Contract(Id, cusId, name, start, end, sign, addr, file);
+                Contract contract = new Contract(Id, name, cusId, file, addr, start, end, sign );
                 listContract.add(contract);
             }
             
@@ -331,7 +379,7 @@ public class ContractController implements Initializable {
         tbContract.setItems(listContract);
     }
     @FXML
-    public void setTableModel(int contractID){
+    private void setTableModel(int contractID){
         tbModel.getItems().clear();
         try {
             
@@ -354,88 +402,288 @@ public class ContractController implements Initializable {
         tbModel.setItems(listModel);
     }
     @FXML
-    public void getTableData(){
+    private void setChoiceBox(){
+        choiceCus.getItems().clear();
+        try {            
+            sql = "select * from Customer";
+            db.rs = db.stmt.executeQuery(sql);
+
+            while(db.rs.next()){
+                choiceValue.add(db.rs.getString("CusName"));
+            }
+            choiceCus.setItems(choiceValue);
+            
+        } catch (SQLException e) {
+        }
+    }
+    @FXML
+    private void setCustomerName(int CusID){
+        try {
+            sql = "SELECT CusName FROM Customer WHERE CusID ="+CusID;
+            db.rs = db.stmt.executeQuery(sql);
+            while(db.rs.next()){
+                customerName.setText(db.rs.getString("CusName"));
+                choiceCus.setValue(db.rs.getString("CusName"));
+            }
+            
+        } catch (SQLException e) {
+        }
+    }
+    @FXML
+    private void getTableData(){
         tbContract.setOnMousePressed((MouseEvent me) -> {
             Contract Con = tbContract.getSelectionModel().getSelectedItem();
             if (Con != null){
                 btnEdit.setDisable(false);
                 btnDel.setDisable(false);
                 contractId.setText(String.valueOf(Con.getID()));
-                customerName.setText(Con.getName());
+                contractName.setText(Con.getName());
                 file.setText(Con.getFile());
                 contractAddress.setText(Con.getAddr());
                 dateSign.setValue(Con.getSign().toLocalDate());
                 dateStart.setValue(Con.getStart().toLocalDate());
-                dateEnd.setValue(Con.getEnd().toLocalDate());
+                dateEnd.setValue(Con.getEnd().toLocalDate());            
                 setTableModel(Con.getID());
+                setCustomerName(Con.getCusID());
             }
         });
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnN.setVisible(false);
-        btnY.setVisible(false);
         btnEditModel.setVisible(false);
+        valMess.setText("");
         btnEdit.setDisable(true);
         btnDel.setDisable(true);
-        Disable();
+        Visiable(false,true);
+        Disable(true);
         setTableContract();
         getTableData();
+        Add();
+        Edit();
+        Delete();
+        setChoiceBox();
     }
     
-    public void Disable(){
-        tbModel.setDisable(true);
-        contractId.setDisable(true);
-        customerName.setDisable(true);
-        file.setDisable(true);
-        dateStart.setDisable(true);
-        dateEnd.setDisable(true);
-        dateSign.setDisable(true);
-        contractAddress.setDisable(true);
+    private void Add(){
+        btnAdd.setOnAction(eventA -> {
+            Disable(false);            
+            contractId.setDisable(true);
+            Visiable(true,false);
+            choiceCus.setPromptText("Chọn khách hàng");
+            btnEditModel.setText("Chọn người mẫu");
+            tbContract.setDisable(true);
+            renew();
+            btnY.setOnAction(eventY -> {
+                if(textfieldValidation()){
+                try {
+                    sql = "Select CusID from Customer where CusName ='"+choiceCus.getValue()+"';";
+                    db.rs = db.stmt.executeQuery(sql);
+                    while(db.rs.next()){
+                        customerID = String.valueOf(db.rs.getInt("CusID"));
+                    }                    
+                    sql="INSERT INTO Contract VALUES ('"+contractName.getText()+"',"+customerID+",'"+file.getText()+"','"
+                            +contractAddress.getText()+"','"+dateSign.getValue()+"','"+dateStart.getValue()+"','"+dateEnd.getValue()+"')";
+                    db.rs = db.stmt.executeQuery(sql);
+                } catch (SQLException e) {
+                    
+                }
+                setTableContract();
+                setChoiceBox();
+                renew();
+                tbContract.setDisable(false);
+                Visiable(false,true);
+                Disable(true);
+                Alert("Thêm thành công");
+                }
+            });
+            btnN.setOnAction(eventC ->{
+                renew();
+                Disable(true);
+                Visiable(false,true);
+                tbModel.setVisible(true);
+                tbContract.setDisable(false);
+            });
+        });
     }
     
-    public void Add(MouseEvent event){
-        tbContract.setDisable(true);
-        btnN.setVisible(true);
-        btnY.setVisible(true);
-        customerName.setDisable(false);
-        file.setDisable(false);
-        btnEditModel.setVisible(true);
-        btnEditModel.setText("Chọn người mẫu");
-        tbModel.setVisible(false);
-        dateStart.setDisable(false);
-        dateEnd.setDisable(false);
-        dateSign.setDisable(false);
-        contractAddress.setDisable(false);
+    private void Edit(){
+        btnEdit.setOnAction(eventE -> {            
+            Contract Con = tbContract.getSelectionModel().getSelectedItem();
+            setCustomerName(Con.getCusID());
+            Visiable(true,false);
+            Disable(false);
+            contractId.setDisable(true);
+            dateSign.setDisable(true);
+            btnEditModel.setText("Chỉnh sửa người mẫu");
+            btnY.setOnAction(eventY -> {
+                if(textfieldValidation()){
+                        try {
+                        sql = "Select CusID from Customer where CusName ='"+choiceCus.getValue()+"';";
+                        db.rs = db.stmt.executeQuery(sql);
+                        while(db.rs.next()){
+                            customerID = String.valueOf(db.rs.getInt("CusID"));
+                        }
+                        Alert(customerID);
+                        /*sql = "UPDATE Contract SET ConName = '"+contractName.getText()+"', CusID = "+customerID
+                                +", ConFile='"+file.getText()+"', ConAddr='"+contractAddress.getText()
+                                +"',  ConSignDate='"+dateSign.getValue()+"',ConStart='"+dateStart.getValue()+"',ConEnd='"+dateEnd.getValue()+"' WHERE ContractID="+Con.getID()+";";
+                        db.rs = db.stmt.executeQuery(sql);*/
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ContractController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    setTableContract();
+                    setChoiceBox();
+                    renew();
+                    Visiable(false,true);
+                    Disable(true);
+                    Alert("Cập nhật thành công");
+                }
+            });
+            btnN.setOnAction(eventC ->{
+                Disable(true);
+                Visiable(false,true);
+                renew();
+                tbModel.setVisible(true);
+                tbContract.setDisable(false);
+            });
+        });
+    }
+    
+    private void Delete(){
+        btnDel.setOnAction(eventD -> {
+            Contract Con = tbContract.getSelectionModel().getSelectedItem();
+            btnEdit.setVisible(false);
+            btnAdd.setVisible(false);
+            btnDel.setVisible(false);
+            btnY.setVisible(true);
+            btnN.setVisible(true);
+            btnY.setOnAction(eventY -> {
+                try {
+                    sql = "DELETE FROM Contract WHERE ContractID="+Con.getID();
+                    db.rs = db.stmt.executeQuery(sql);
+                } catch (SQLException e) {}
+                renew();
+                Disable(true);
+                Visiable(false,true);
+                setTableContract();
+                Alert("Xóa thành công");
+            });
+            btnN.setOnAction(eventC ->{
+                Disable(true);
+                Visiable(false,true);
+                renew();
+                btnEditModel.setVisible(false);
+                tbModel.setVisible(true);
+                tbContract.setDisable(false);
+            });
+        });
+    }  
+    
+    private void Alert(String a){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("THÔNG BÁO");
+        alert.setHeaderText(null);
+        alert.setContentText(a);
+        alert.showAndWait();
+    }
+    
+    private void Visiable(boolean a, boolean b){
+        tbModel.setVisible(b);
+        btnN.setVisible(a);
+        btnY.setVisible(a);
+        valMess.setVisible(a);
+        choiceCus.setVisible(a);
+        btnAddCus.setVisible(a);
+        customerName.setVisible(b);
+        btnEditModel.setVisible(a);
+        btnAdd.setVisible(b);
+        btnEdit.setVisible(b);
+        btnDel.setVisible(b);
+    }
+    
+    private void Disable(boolean c){
+        tbModel.setDisable(c);
+        contractId.setDisable(c);
+        contractName.setDisable(c);
+        customerName.setDisable(c);
+        file.setDisable(c);
+        dateStart.setDisable(c);
+        dateEnd.setDisable(c);
+        dateSign.setDisable(c);
+        contractAddress.setDisable(c);
+        choiceCus.setDisable(c);
+    }
+    
+    private void renew(){
         contractId.setText("");
         file.setText("");
         contractAddress.setText("");
-        customerName.setText("");
+        contractName.setText("");
         contractId.setText("");
         dateStart.setValue(null);
         dateEnd.setValue(null);
         dateSign.setValue(null);
-        btnY.setOnAction(eventS -> {
-        });
+        customerName.setText("");
+        tbModel.getItems().clear();
     }
     
-    public void Edit(MouseEvent event){
-        btnN.setVisible(true);
-        btnY.setVisible(true);
-        btnEditModel.setVisible(true);
-        contractAddress.setDisable(false);
-        customerName.setDisable(false);
-        file.setDisable(false);
-        dateStart.setDisable(false);
-        dateEnd.setDisable(false);
-    }
+    private boolean textfieldValidation() {
+        String name, addr, cus;
+        LocalDate sign, end, start;
+        LocalDate current = LocalDate.now();
+        
+        valMess.setText("");
+        valMess.setStyle("-fx-text-fill: red;");
+        
+        name = contractName.getText();
+        if(name.isEmpty()){
+            contractName.requestFocus();
+            valMess.setText("Tên hợp đồng không thể trống!");
+            return false;
+        }else if(name.length()<3){
+            contractAddress.requestFocus();
+            valMess.setText("Tên hợp đồng không thể dưới 3 ký tự!");
+            return false;
+        }
+        
+        if(choiceCus.getSelectionModel().isEmpty()){
+            valMess.setText("Hãy chọn khách hàng hoặc thêm mới!");
+            return false;
+        }
+        
+        sign = dateSign.getValue();
+        start = dateStart.getValue();
+        end = dateEnd.getValue();
+        if(sign == null || sign == start || end == null){
+            valMess.setText("Ngày không được trống!");
+            return false;
+        }
+        if(sign.isAfter(current)){
+            dateSign.requestFocus();
+            valMess.setText("Chỉ nhập những hợp đồng đã được ký!");
+            return false;
+        }else if(start.isBefore(sign)){
+            dateStart.requestFocus();
+            valMess.setText("Ngày bắt đầu không thể trước ngày ký!");
+            return false;
+        }else if(end.isBefore(start)){
+            dateStart.requestFocus();
+            valMess.setText("Ngày kết thúc không thể trước ngày bắt đầu!");
+            return false;
+        }
+        
+        addr = contractAddress.getText();
+        if(addr.isEmpty()){
+            contractAddress.requestFocus();
+            valMess.setText("Địa chỉ không thể để trống!");
+            return false;
+        }else if(addr.length()<3){
+            contractAddress.requestFocus();
+            valMess.setText("Địa chỉ không thể dưới 3 ký tự!");
+            return false;
+        }
+
+        return true;
     
-    public void Delete(MouseEvent event){
-        btnN.setVisible(true);
-        btnY.setVisible(true);
-    }
-    
-    public void viewInformation(MouseEvent event){
-        viewInfo.setVisible(true);
     }
 }
