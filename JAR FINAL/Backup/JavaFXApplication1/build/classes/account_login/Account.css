@@ -1,0 +1,59 @@
+.anchor {
+    -fx-background-color:  #2D3447;
+}
+
+.loginfield{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #a0a2ab transparent;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+}
+.loginBtn{
+    -fx-background-color: #fcae14;
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color:transparent;
+    -fx-background-insets:0;
+}
+.loginBtn:hover{
+    -fx-background-color: #ffbb3a;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.labelBlack {
+    -fx-text-fill: black;
+}
+
+.loginBtn:pressed{
+    -fx-background-color: #cc8700;
+}
+
+.buttonColor {
+    -fx-background-color:  white;
+    -fx-text-fill: black;
+    
+}
+
+.selectBox {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+#searchBar{
+    -fx-background-radius: 15;
+    -fx-background-image: url("/mainpanel/icons/Search_50px.png");
+    -fx-background-size: 18;
+    -fx-background-position: 10 center;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 0 0 0 32;
+}
+.toolBtn{-fx-background-radius:2;}
+#lblManaPass{
+    -fx-text-fill: black;
+}
+#table .label {
+    -fx-text-fill: black;
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.embed.swing.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    <children>
+      <AnchorPane fx:id="PaneContractForm" prefHeight="70.0" prefWidth="1000.0" styleClass="header">
+         <children>
+            <Label fx:id="valMess" layoutX="561.0" layoutY="10.0" prefHeight="50.0" prefWidth="438.0" text="Valiation Message" textFill="WHITE" />
+            <HBox alignment="CENTER_RIGHT" layoutX="726.0" layoutY="10.0" prefHeight="50.0" prefWidth="268.0" spacing="10.0" AnchorPane.rightAnchor="14.0">
+               <children>
+                  <Button fx:id="btnAdd" mnemonicParsing="false" prefWidth="80.0" styleClass="toolBtn" text="Thêm" />
+                  <Button fx:id="btnEdit" mnemonicParsing="false" prefWidth="80.0" styleClass="toolBtn" text="Sửa" />
+                  <Button fx:id="btnDel" mnemonicParsing="false" prefWidth="80.0" styleClass="toolBtn" text="Xóa" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="293.0" layoutY="10.0" prefHeight="50.0" prefWidth="260.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnY" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="toolBtn" text="Đồng ý">
+                  </Button>
+                  <Button fx:id="btnN" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="toolBtn" text="Hủy">
+                  </Button>
+               </children>
+            </HBox>
+            <TextField fx:id="searchBar" layoutX="14.0" layoutY="20.0" prefHeight="30.0" prefWidth="260.0" promptText="Tìm kiếm" AnchorPane.leftAnchor="14.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tbContract" editable="true" layoutX="21.0" layoutY="70.0" prefHeight="630.0" prefWidth="390.0" styleClass="table_view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="colID" prefWidth="63.0" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="147.0" text="Khách hàng" />
+              <TableColumn fx:id="colStart" prefWidth="95.0" text="Bắt đầu" />
+              <TableColumn fx:id="colEnd" prefWidth="95.0" text="Kết thúc" />
+        </columns>
+      </TableView>
+      <AnchorPane fx:id="viewInfo" layoutX="390.0" layoutY="70.0" prefHeight="630.0" prefWidth="610.0" styleClass="anchor" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="21.0" layoutY="15.0" prefHeight="70.0" prefWidth="120.0" text="Mã hợp đồng" textFill="WHITE" AnchorPane.leftAnchor="15.0" />
+            <Label layoutX="332.0" layoutY="15.0" prefHeight="70.0" prefWidth="77.0" text="Ngày lập" textFill="WHITE" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="210.0" />
+            <Label layoutX="15.0" layoutY="241.0" prefHeight="70.0" prefWidth="120.0" text="File chi tiết" textFill="WHITE" AnchorPane.leftAnchor="15.0" />
+            <Label layoutX="15.0" layoutY="70.0" prefHeight="70.0" prefWidth="120.0" text="Tên hợp đồng" textFill="WHITE" AnchorPane.leftAnchor="15.0" />
+            <Label layoutX="15.0" layoutY="125.0" prefHeight="70.0" prefWidth="120.0" text="Ngày bắt đầu" textFill="WHITE" AnchorPane.leftAnchor="15.0" />
+            <Label layoutX="332.0" layoutY="125.0" prefHeight="70.0" prefWidth="98.0" text="Ngày kết thúc" textFill="WHITE" AnchorPane.rightAnchor="190.0" />
+            <Label layoutX="21.0" layoutY="295.0" prefHeight="70.0" prefWidth="159.0" text="Người mẫu tham gia" textFill="WHITE" AnchorPane.leftAnchor="15.0" />
+            <TableView fx:id="tbModel" editable="true" layoutY="370.0" onMouseClicked="#tableCellClicked1" prefHeight="260.0" prefWidth="620.0" styleClass="table_view">
+              <columns>
+                <TableColumn fx:id="colModID" prefWidth="155.0" style="-fx-alignment: TOP_CENTER;" text="ID" />
+                <TableColumn fx:id="colModName" prefWidth="454.0" style="-fx-alignment: TOP_CENTER;" text="Họ và tên" />
+              </columns>
+            </TableView>
+            <TextField id="contractID" fx:id="contractId" layoutX="135.0" layoutY="34.0" prefHeight="31.0" prefWidth="180.0" AnchorPane.leftAnchor="135.0" />
+            <TextField fx:id="contractName" layoutX="135.0" layoutY="89.0" prefHeight="31.0" prefWidth="180.0" AnchorPane.leftAnchor="135.0" />
+            <TextField fx:id="file" layoutX="135.0" layoutY="260.0" prefHeight="31.0" prefWidth="466.0" AnchorPane.leftAnchor="135.0" />
+            <DatePicker fx:id="dateStart" layoutX="135.0" layoutY="144.0" prefHeight="31.0" prefWidth="180.0" />
+            <DatePicker fx:id="dateEnd" layoutX="430.0" layoutY="145.0" prefHeight="30.0" prefWidth="170.0" />
+            <DatePicker fx:id="dateSign" layoutX="430.0" layoutY="34.0" prefHeight="30.0" prefWidth="170.0" />
+            <Label layoutX="15.0" layoutY="182.0" prefHeight="70.0" prefWidth="120.0" text="Địa điểm" textFill="WHITE" />
+            <TextField fx:id="contractAddress" layoutX="135.0" layoutY="201.0" prefHeight="31.0" prefWidth="466.0" />
+            <Button fx:id="btnEditModel" layoutX="201.0" layoutY="315.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" styleClass="toolBtn" text="Model" />
+            <Button fx:id="btnAddCus" layoutX="430.0" layoutY="315.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="170.0" styleClass="toolBtn" text="Thêm khách hàng mới" />
+            <Label layoutX="332.0" layoutY="81.0" prefHeight="50.0" prefWidth="98.0" text="Khách hàng" textFill="WHITE" />
+            <ComboBox fx:id="choiceCus" layoutX="430.0" layoutY="90.0" prefHeight="31.0" prefWidth="170.0" promptText="Chọn khách hàng" styleClass="buttonColor" />
+            <TextField fx:id="customerName" layoutX="430.0" layoutY="90.0" prefHeight="31.0" prefWidth="170.0" />
+            <Pane fx:id="customerPane" layoutX="8.0" layoutY="201.0" prefHeight="200.0" prefWidth="595.0" style="-fx-background-color: #000;" styleClass="anchor" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="70.0" prefWidth="110.0" text="Tên khách hàng" textFill="WHITE" />
+                  <TextField id="contractID" fx:id="cusAddName" layoutX="128.0" layoutY="34.0" prefHeight="31.0" prefWidth="170.0" />
+                  <Label layoutX="14.0" layoutY="75.0" prefHeight="70.0" prefWidth="110.0" text="Số điện thoại" textFill="WHITE" />
+                  <TextField id="contractID" fx:id="cusAddPhone" layoutX="128.0" layoutY="95.0" prefHeight="31.0" prefWidth="170.0" />
+                  <Label layoutX="331.0" layoutY="14.0" prefHeight="70.0" prefWidth="68.0" text="Công ty" textFill="WHITE" />
+                  <Label layoutX="331.0" layoutY="75.0" prefHeight="70.0" prefWidth="68.0" text="Email" textFill="WHITE" />
+                  <TextField id="contractID" fx:id="cusAddAddress" layoutX="407.0" layoutY="34.0" prefHeight="31.0" prefWidth="170.0" />
+                  <TextField id="contractID" fx:id="cusAddEmail" layoutX="407.0" layoutY="95.0" prefHeight="31.0" prefWidth="170.0" />
+                  <Button fx:id="btnAddY" layoutX="378.0" layoutY="155.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" styleClass="toolBtn" text="Đồng ý" />
+                  <Button fx:id="btnAddN" layoutX="492.0" layoutY="155.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" styleClass="toolBtn" text="Hủy" />
+                  <Label fx:id="valAddMess" layoutX="13.0" layoutY="149.0" prefHeight="50.0" prefWidth="364.0" text="Valiation Message" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="PaneModelTable" layoutY="10.0" prefHeight="370.0" prefWidth="1010.0" styleClass="anchor" visible="false" AnchorPane.topAnchor="70.0">
+         <children>
+            <TableView fx:id="modelTable" layoutY="-1.0" onMouseClicked="#tableCellClicked" prefHeight="334.0" prefWidth="1010.0">
+               <columns>
+                  <TableColumn fx:id="tabID" prefWidth="40.0" text="ID" />
+                  <TableColumn fx:id="tabThumb" editable="false" minWidth="100.0" prefWidth="108.0" sortable="false" text="Thumbnail" />
+                  <TableColumn fx:id="tabName" editable="false" prefWidth="152.0" text="Name" />
+                  <TableColumn fx:id="tabGender" editable="false" prefWidth="50.0" sortable="false" text="Female" />
+                  <TableColumn fx:id="tabAge" editable="false" minWidth="0.0" prefWidth="50.0" text="Age" />
+                  <TableColumn fx:id="tabBody" prefWidth="90.0" text="Body" />
+                  <TableColumn fx:id="tabLoca" editable="false" prefWidth="120.0" text="City" />
+                  <TableColumn fx:id="tabSkill" editable="false" prefWidth="201.0" text="Skills" />
+                  <TableColumn fx:id="tabLang" editable="false" prefWidth="198.0" text="Language" />
+               </columns>
+            </TableView>
+            <Button fx:id="btnActionTable" layoutX="855.0" layoutY="338.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Thêm" />
+            <Button fx:id="btnExitTable" layoutX="932.0" layoutY="338.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Đóng" />
+            <Button fx:id="btnFil" layoutX="1.0" layoutY="338.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" styleClass="toolBtn" text="Filter">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="16.0">
+                     <image>
+                        <Image url="@../../../JavaFXApplication1/src/mainpanel/icons/Filter_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

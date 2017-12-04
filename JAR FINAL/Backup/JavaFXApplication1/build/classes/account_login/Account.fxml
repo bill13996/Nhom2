@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root id="AnchorPane" fx:id="root1" prefHeight="700.0" prefWidth="1000.0" stylesheets="@Account.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="accountPane" prefHeight="700.0" prefWidth="1000.0">
+         <children>
+            <TableView fx:id="table" focusTraversable="false" layoutX="30.0" layoutY="63.0" onMouseClicked="#mouseClicked" prefHeight="620.0" prefWidth="940.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="95.0" styleClass="labelBlack" text="AccountID" />
+                <TableColumn fx:id="colUsername" prefWidth="309.0" text="UserName" />
+                  <TableColumn fx:id="colRole" prefWidth="150.0" text="Role" />
+                  <TableColumn prefWidth="75.0" text="Password" visible="false" />
+                  <TableColumn fx:id="colCity" prefWidth="382.0" text="City" />
+              </columns>
+            </TableView>
+            <HBox prefHeight="63.0" prefWidth="64.0" />
+            <TextField fx:id="searchBar" layoutX="30.0" layoutY="17.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@Account.css" />
+            <HBox alignment="CENTER_RIGHT" layoutX="668.0" layoutY="8.0" prefHeight="49.0" prefWidth="302.0" spacing="10.0" stylesheets="@Account.css">
+               <children>
+                  <Button fx:id="btnAdd" focusTraversable="false" mnemonicParsing="false" onAction="#Add" prefWidth="90.0" styleClass="toolBtn" text="Add">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@/mainpanel/icons/Add_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnEdit" focusTraversable="false" mnemonicParsing="false" onAction="#Edit" prefWidth="90.0" styleClass="toolBtn" text="Edit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@/mainpanel/icons/Edit_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnDel" focusTraversable="false" mnemonicParsing="false" onAction="#Delete" prefWidth="90.0" styleClass="toolBtn" text="Delete">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@/mainpanel/icons/Delete_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane id="AnchorPane" fx:id="AddAccount" layoutX="350.0" layoutY="62.0" prefHeight="376.0" prefWidth="400.0" style="-fx-background-color: #2D3447;" styleClass="anchor" stylesheets="@Account.css" visible="false" AnchorPane.topAnchor="100.0">
+         <children>
+            <TextField fx:id="txtUsername1" focusTraversable="false" layoutX="95.0" layoutY="65.0" prefHeight="31.0" prefWidth="250.0" promptText="Username" styleClass="loginfield" />
+            <Label layoutX="87.0" layoutY="139.0" />
+            <PasswordField fx:id="txtPass1" focusTraversable="false" layoutX="95.0" layoutY="119.0" prefHeight="31.0" prefWidth="250.0" promptText="Password" styleClass="loginfield" />
+            <RadioButton fx:id="rdoAdmin1" focusTraversable="false" layoutX="92.0" layoutY="238.0" mnemonicParsing="false" styleClass="label" text="Admin" />
+            <RadioButton fx:id="rdoMan1" focusTraversable="false" layoutX="176.0" layoutY="238.0" mnemonicParsing="false" styleClass="label" text="Manager" />
+            <ComboBox fx:id="cboCity1" focusTraversable="false" layoutX="92.0" layoutY="270.0" prefHeight="27.0" prefWidth="250.0" promptText="City" styleClass="buttonColor" />
+            <Label fx:id="lblTitle" alignment="CENTER" focusTraversable="false" layoutY="22.0" prefHeight="28.0" prefWidth="399.0" text="ADD ACCOUNT">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnBack" focusTraversable="false" layoutX="291.0" layoutY="323.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="90.0" styleClass="loginBtn" text="Back">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSave" focusTraversable="false" layoutX="193.0" layoutY="323.0" mnemonicParsing="false" onAction="#Save" prefHeight="38.0" prefWidth="90.0" styleClass="loginBtn" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="72.0" layoutY="130.0">
+               <image>
+                  <Image url="@Icon/icons8-password.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="70.0" layoutY="72.0">
+               <image>
+                  <Image url="@Icon/icons8-user_filled.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="txtRePass1" focusTraversable="false" layoutX="93.0" layoutY="178.0" prefHeight="27.0" prefWidth="250.0" promptText="Re-enter Password" styleClass="loginfield" />
+            <Button fx:id="btnUpdate" focusTraversable="false" layoutX="193.0" layoutY="323.0" mnemonicParsing="false" onAction="#Update" prefHeight="38.0" prefWidth="90.0" styleClass="loginBtn" text="Update" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="managerAuth" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblManaPass" layoutX="410.0" layoutY="189.0" prefHeight="49.0" prefWidth="180.0" text="Change password:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnManaChange" layoutX="460.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Change" />
+            <PasswordField fx:id="tfManaOldPass" layoutX="410.0" layoutY="238.0" prefHeight="25.0" prefWidth="180.0" promptText="Current password" />
+            <PasswordField fx:id="tfManaNewPass" layoutX="410.0" layoutY="288.0" prefHeight="25.0" prefWidth="180.0" promptText="New password" />
+            <PasswordField fx:id="tfManaRePass" layoutX="410.0" layoutY="322.0" prefHeight="25.0" prefWidth="180.0" promptText="Re-enter new password" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

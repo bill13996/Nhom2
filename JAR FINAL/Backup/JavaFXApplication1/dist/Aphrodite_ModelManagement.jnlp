@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Aphrodite_ModelManagement.jnlp">
+  <information>
+    <title>Aphrodite_ModelManagement</title>
+    <vendor>ENS</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Aphrodite_ModelManagement.jar" size="6917926" download="eager" />
+    <jar href="lib\sqljdbc42.jar" size="891490" download="eager" />
+  </resources>
+  <applet-desc  width="1000" height="750" main-class="com.javafx.main.NoJavaFXFallback"  name="Aphrodite_ModelManagement" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="1000" height="750" main-class="mainpanel.Start"  name="Aphrodite_ModelManagement" />
+  <update check="always"/>
+</jnlp>

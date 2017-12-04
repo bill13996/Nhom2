@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root id="AnchorPane" prefHeight="432.0" prefWidth="650.0" style="-fx-background-color: #2D3447;" stylesheets="@Login.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtUser" cacheShape="false" centerShape="false" layoutX="242.0" layoutY="237.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" promptText="Username" scaleShape="false" styleClass="loginfield">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <PasswordField fx:id="txtPass" cacheShape="false" centerShape="false" layoutX="242.0" layoutY="290.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" promptText="Password" scaleShape="false" styleClass="loginfield">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </PasswordField>
+      <Button fx:id="loginBtn" layoutX="210.0" layoutY="353.0" mnemonicParsing="false" onAction="#Login" pickOnBounds="false" prefHeight="31.0" prefWidth="100.0" text="Login" textFill="#f7f7f2">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <ToggleButton fx:id="remBtn" layoutX="310.0" layoutY="353.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="134.0" text="Remember me" />
+      <ImageView fitHeight="170.0" fitWidth="170.0" layoutX="240.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Icon/login/af-magic%20copy%20copy.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="207.0" layoutY="237.0">
+         <image>
+            <Image url="@Icon/login/icons8-user_filled.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="207.0" layoutY="290.0">
+         <image>
+            <Image url="@Icon/login/icons8-password2.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnExit" graphicTextGap="0.0" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Exit" style="-fx-background-color: transparent;" text="Exit" textFill="#a0a2ab" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="14.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#Exit">
+               <image>
+                  <Image url="@Icon/login/icons8_Back_64px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnConfig" graphicTextGap="0.0" layoutX="20.0" layoutY="73.0" mnemonicParsing="false" onAction="#Exit" prefHeight="46.0" prefWidth="46.0" textFill="#a0a2ab" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#Exit">
+               <image>
+                  <Image url="@Icon/Settings_50px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="lblInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="197.0" prefHeight="25.0" prefWidth="345.0" textAlignment="CENTER" textFill="WHITE" />
+      <AnchorPane fx:id="configBackground" layoutY="-1.0" opacity="0.3" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="configBar" prefHeight="432.0" prefWidth="225.0" visible="false">
+         <children>
+            <Label fx:id="lbDBPass" layoutX="14.0" layoutY="329.0" prefHeight="20.0" prefWidth="197.0" text="Password" textFill="WHITE" />
+            <TextField fx:id="tfDBLogin" layoutX="14.0" layoutY="299.0" prefHeight="25.0" prefWidth="197.0" />
+            <Label fx:id="lbDBLogin" layoutX="14.0" layoutY="279.0" prefHeight="20.0" prefWidth="197.0" text="Login" textFill="WHITE" />
+            <TextField fx:id="tfDBServer" layoutX="14.0" layoutY="249.0" prefHeight="25.0" prefWidth="117.0" />
+            <Label fx:id="lbDBServer" layoutX="14.0" layoutY="229.0" prefHeight="20.0" prefWidth="117.0" text="Server name" textFill="WHITE" />
+            <Label fx:id="lbDBPort" layoutX="141.0" layoutY="229.0" prefHeight="20.0" prefWidth="70.0" text="Port" textFill="WHITE" />
+            <TextField fx:id="tfDBPort" layoutX="141.0" layoutY="249.0" prefHeight="25.0" prefWidth="70.0" />
+            <PasswordField fx:id="tfDBPass" layoutX="14.0" layoutY="349.0" prefHeight="25.0" prefWidth="197.0" />
+            <Label fx:id="lbDBName" layoutX="14.0" layoutY="174.0" prefHeight="20.0" prefWidth="197.0" text="Database name" textFill="WHITE" />
+            <TextField fx:id="tfDBName" layoutX="14.0" layoutY="194.0" prefHeight="25.0" prefWidth="197.0" />
+            <ImageView fitHeight="104.0" fitWidth="105.0" layoutX="66.0" layoutY="62.0">
+               <image>
+                  <Image url="@Icon/Database%20Administrator_104px.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnDBSave" layoutX="38.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
+            <Button fx:id="btnDBTest" layoutX="118.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Test" />
+            <Button fx:id="btnDBCancel" layoutX="189.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@Icon/Delete_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="6.0" layoutY="3.0" onMouseClicked="#langEN" preserveRatio="true">
+               <image>
+                  <Image url="@../mainpanel/icons/uk1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="37.0" layoutY="3.0" onMouseClicked="#langVI" preserveRatio="true">
+               <image>
+                  <Image url="@../mainpanel/icons/vi1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</fx:root>

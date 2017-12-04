@@ -1,0 +1,44 @@
+.loginfield{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #a0a2ab transparent;
+    -fx-border-width: 1px;
+    -fx-text-fill: white;
+}
+#loginBtn, #remBtn{
+    -fx-background-color: #fcae14;
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color:transparent;
+    -fx-background-insets:0;
+}
+#loginBtn:hover, #remBtn:hover{
+    -fx-background-color: #ffbb3a;
+}
+#loginBtn{
+    -fx-background-radius: 15 0 0 15;
+    -fx-border-color: transparent black transparent transparent;
+}
+#remBtn{
+    -fx-background-radius: 0 15 15 0;
+    -fx-border-color: transparent;
+}
+#loginBtn:pressed{
+    -fx-background-color: #cc8700;
+}
+#remBtn:selected{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fcae14;
+    -fx-border-radius: 0 15 15 0;
+    -fx-border-color: #fcae14;
+}
+#configBar{
+    -fx-background-color: #2D3447;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+#btnConfig{
+    -fx-background-color: transparent;
+    -fx-background-radius:50%;
+}
+#btnConfig:pressed{
+    -fx-background-color:lightgrey;
+}

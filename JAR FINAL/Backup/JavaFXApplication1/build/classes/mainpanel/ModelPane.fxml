@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root prefHeight="700.0" prefWidth="1000.0" stylesheets="@ModelPane.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+      <AnchorPane fx:id="containerMain" prefHeight="353.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <TableView fx:id="modelTable" layoutX="20.0" layoutY="-12.0" prefHeight="620.0" prefWidth="980.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <columns>
+                  <TableColumn fx:id="tabID" prefWidth="40.0" text="ID" />
+                  <TableColumn fx:id="tabThumb" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Thumbnail" />
+                  <TableColumn fx:id="tabName" editable="false" prefWidth="160.0" text="Name" />
+                  <TableColumn fx:id="tabGender" editable="false" prefWidth="50.0" sortable="false" text="Female" />
+                  <TableColumn fx:id="tabAge" editable="false" minWidth="0.0" prefWidth="50.0" text="Age" />
+                  <TableColumn fx:id="tabBody" prefWidth="90.0" text="Body" />
+                  <TableColumn fx:id="tabLoca" editable="false" prefWidth="120.0" text="City" />
+                  <TableColumn fx:id="tabSkill" editable="false" prefWidth="193.0" text="Skills" />
+                  <TableColumn fx:id="tabLang" editable="false" prefWidth="174.0" text="Language" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnFil" layoutX="224.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnFilAction" prefWidth="80.0" styleClass="toolBtn" text="Filter">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@icons/Filter_50px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="searchBar" layoutX="14.0" layoutY="24.0" prefHeight="30.0" prefWidth="200.0" promptText="Search by name or ID" AnchorPane.leftAnchor="10.0" />
+      <HBox alignment="CENTER_RIGHT" layoutX="730.0" layoutY="15.0" prefHeight="50.0" prefWidth="260.0" spacing="10.0">
+         <children>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddAction" prefWidth="85.0" styleClass="toolBtn" text="Add">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@icons/Add_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEditAction" prefWidth="85.0" styleClass="toolBtn" text="Edit">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@icons/Edit_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnDel" mnemonicParsing="false" onAction="#btnDelAction" prefWidth="85.0" styleClass="toolBtn" text="Delete">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@icons/Delete_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="topContainer" prefHeight="700.0" prefWidth="1000.0" visible="false">
+         <children>
+            <AnchorPane fx:id="topBackground" onMouseClicked="#backgroundClickAction" opacity="0.5" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="addModal" prefHeight="500.0" prefWidth="550.0" style="-fx-background-color: red;" visible="false" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" />
+            <Pane fx:id="delModal" layoutX="300.0" prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: white;" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
+               <children>
+                  <Label fx:id="lbComfirmDel" layoutX="14.0" prefHeight="80.0" prefWidth="250.0" text="Are you sure you want to delete this ?">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnDelNo" layoutX="336.0" layoutY="27.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="No" />
+                  <Button fx:id="btnDelYes" layoutX="277.0" layoutY="27.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Yes" />
+               </children>
+            </Pane>
+            <Pane fx:id="filModal" prefHeight="250.0" prefWidth="1000.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <HBox alignment="CENTER" layoutX="680.0" layoutY="180.0" prefHeight="50.0" prefWidth="260.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnFilDone" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Done" />
+                        <Button fx:id="btnFilReset" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Reset" />
+                        <Button fx:id="btnFilCancel" mnemonicParsing="false" onAction="#btnFilAction" prefHeight="30.0" prefWidth="80.0" text="Cancel" />
+                     </children>
+                  </HBox>
+                  <Separator layoutX="710.0" layoutY="165.0" prefWidth="200.0" />
+                  <GridPane alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="160.0" prefWidth="300.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="240.0" prefWidth="240.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="lbDisplay" prefHeight="17.0" prefWidth="45.0" text="Display:" GridPane.rowIndex="3" />
+                        <Label fx:id="lbAge" prefHeight="17.0" prefWidth="25.0" text="Age:" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="190.0" spacing="5.0" GridPane.columnIndex="1">
+                           <children>
+                              <ComboBox fx:id="cbbAgeSign" prefHeight="25.0" prefWidth="52.0" />
+                              <ComboBox fx:id="cbbAgeVal1" prefHeight="25.0" prefWidth="65.0" />
+                              <Label fx:id="lblAgeTo" alignment="CENTER" prefHeight="17.0" prefWidth="23.0" styleClass="filterBetween" text="to" />
+                              <ComboBox fx:id="cbbAgeVal2" disable="true" prefHeight="25.0" prefWidth="60.0" styleClass="filterBetween" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <RadioButton fx:id="radDisAll" mnemonicParsing="false" selected="true" text="All">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tggDisplay" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="radDisAv" mnemonicParsing="false" text="Avalable" toggleGroup="$tggDisplay" />
+                              <RadioButton fx:id="radDisUn" mnemonicParsing="false" text="Unavailable" toggleGroup="$tggDisplay" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbCity" prefHeight="17.0" prefWidth="54.0" text="Location:" GridPane.rowIndex="1" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="190.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ComboBox fx:id="cbbCity" prefHeight="25.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbGen" prefHeight="17.0" prefWidth="45.0" text="Gender:" GridPane.rowIndex="2" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <RadioButton fx:id="radGenAll" mnemonicParsing="false" selected="true" text="All">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tggGender" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="radGenMal" mnemonicParsing="false" text="Male" toggleGroup="$tggGender" />
+                              <RadioButton fx:id="radGenFem" mnemonicParsing="false" text="Female" toggleGroup="$tggGender" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <GridPane alignment="CENTER_LEFT" layoutX="680.0" layoutY="20.0" prefHeight="120.0" prefWidth="300.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="190.0" spacing="5.0" GridPane.columnIndex="1">
+                           <children>
+                              <ComboBox fx:id="cbbBusSign" prefHeight="25.0" prefWidth="52.0" />
+                              <ComboBox fx:id="cbbBusVal1" prefHeight="25.0" prefWidth="65.0" />
+                              <Label fx:id="lblBusTo" alignment="CENTER" prefHeight="17.0" prefWidth="23.0" styleClass="filterBetween" text="to" />
+                              <ComboBox fx:id="cbbBusVal2" disable="true" prefHeight="25.0" prefWidth="65.0" styleClass="filterBetween" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbBus" prefHeight="17.0" prefWidth="40.0" text="Bust:" />
+                        <Label fx:id="lbWai" prefHeight="17.0" prefWidth="40.0" text="Waist:" GridPane.rowIndex="1" />
+                        <Label fx:id="lbHip" prefHeight="17.0" prefWidth="40.0" text="Hip:" GridPane.rowIndex="2" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="190.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ComboBox fx:id="cbbWaiSign" prefHeight="25.0" prefWidth="52.0" />
+                              <ComboBox fx:id="cbbWaiVal1" prefHeight="25.0" prefWidth="65.0" />
+                              <Label fx:id="lblWaiTo" alignment="CENTER" prefHeight="17.0" prefWidth="23.0" styleClass="filterBetween" text="to" />
+                              <ComboBox fx:id="cbbWaiVal2" disable="true" prefHeight="25.0" prefWidth="65.0" styleClass="filterBetween" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="190.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ComboBox fx:id="cbbHipSign" prefHeight="25.0" prefWidth="52.0" />
+                              <ComboBox fx:id="cbbHipVal1" prefHeight="25.0" prefWidth="65.0" />
+                              <Label fx:id="lblHipTo" alignment="CENTER" prefHeight="17.0" prefWidth="23.0" styleClass="filterBetween" text="to" />
+                              <ComboBox fx:id="cbbHipVal2" disable="true" prefHeight="25.0" prefWidth="65.0" styleClass="filterBetween" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="240.0" prefWidth="240.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane layoutX="350.0" layoutY="20.0" prefHeight="160.0" prefWidth="300.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="350.0" minWidth="240.0" prefWidth="240.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="lbSkill" prefHeight="17.0" prefWidth="40.0" text="Skill:" />
+                           </children>
+                           <padding>
+                              <Insets top="12.0" />
+                           </padding>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lbLang" prefHeight="17.0" prefWidth="57.0" text="Language:" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="12.0" />
+                           </GridPane.margin>
+                        </FlowPane>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <content>
+                              <FlowPane fx:id="skillPane" hgap="10.0" prefHeight="66.0" prefWidth="238.0" vgap="10.0" />
+                           </content>
+                           <GridPane.margin>
+                              <Insets top="12.0" />
+                           </GridPane.margin>
+                        </ScrollPane>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <content>
+                              <FlowPane fx:id="langPane" hgap="10.0" prefHeight="66.0" prefWidth="238.0" vgap="10.0" />
+                           </content>
+                           <GridPane.margin>
+                              <Insets top="12.0" />
+                           </GridPane.margin>
+                        </ScrollPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="modelDetailPanel" layoutX="600.0" prefHeight="700.0" prefWidth="400.0">
+         <children>
+            <Label fx:id="lblDetailID" alignment="CENTER" prefHeight="50.0" text="201" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+            </Label>
+            <StackPane fx:id="avatarsPane" layoutX="75.0" layoutY="50.0" prefHeight="250.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="250.0" fitWidth="250.0" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <Button fx:id="btnDetailPrev" layoutX="14.0" layoutY="153.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@icons/Chevron%20Left_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnDetailNext" layoutX="340.0" layoutY="153.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@icons/Chevron%20Right_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <AnchorPane layoutX="25.0" layoutY="315.0" prefHeight="235.0" prefWidth="360.0">
+               <children>
+                  <TextField fx:id="tfDetailCity" alignment="CENTER" editable="false" layoutX="45.0" layoutY="55.0" prefHeight="25.0" prefWidth="150.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutY="55.0" prefHeight="25.0" prefWidth="170.0" text="City" textFill="WHITE" visible="false" />
+                  <Label alignment="CENTER" layoutX="203.0" layoutY="110.0" prefHeight="25.0" prefWidth="30.0" text="-" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="128.0" layoutY="110.0" prefHeight="25.0" prefWidth="25.0" text="-" textFill="WHITE" />
+                  <TextField fx:id="tfDetailHip" alignment="CENTER" editable="false" layoutX="233.0" layoutY="110.0" prefHeight="25.0" prefWidth="50.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfDetailWai" alignment="CENTER" editable="false" layoutX="153.0" layoutY="110.0" prefHeight="25.0" prefWidth="50.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfDetailBus" alignment="CENTER" editable="false" layoutX="78.0" layoutY="110.0" prefHeight="25.0" prefWidth="50.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfDetailAge" alignment="CENTER" editable="false" layoutX="245.0" prefHeight="25.0" prefWidth="70.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfDetailGen" alignment="CENTER" editable="false" layoutX="215.0" layoutY="55.0" prefHeight="25.0" prefWidth="100.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfDetailName" alignment="CENTER" editable="false" layoutX="45.0" prefHeight="25.0" prefWidth="180.0" styleClass="detailTxtF">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <ScrollPane layoutX="3.0" layoutY="165.0" prefHeight="70.0" prefWidth="170.0">
+                     <content>
+                        <VBox fx:id="vbDetailSkill" alignment="TOP_RIGHT" prefHeight="68.0" prefWidth="168.0" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="188.0" layoutY="165.0" prefHeight="70.0" prefWidth="170.0">
+                     <content>
+                        <VBox fx:id="vbDetailLang" prefHeight="68.0" prefWidth="168.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tbDetailCon" layoutX="14.0" layoutY="560.0" prefHeight="120.0" prefWidth="372.0">
+              <columns>
+                <TableColumn fx:id="colDCID" prefWidth="40.0" text="ID" />
+                <TableColumn fx:id="colDCName" prefWidth="160.0" text="Contract name" />
+                  <TableColumn fx:id="colDCStart" prefWidth="85.0" text="Start date" />
+                  <TableColumn fx:id="colDCEnd" prefWidth="85.0" text="End date" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>
